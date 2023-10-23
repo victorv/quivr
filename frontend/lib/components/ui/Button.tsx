@@ -1,6 +1,12 @@
 /* eslint-disable */
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@radix-ui/react-tooltip";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ButtonHTMLAttributes, forwardRef, LegacyRef } from "react";
+import { ButtonHTMLAttributes, LegacyRef, forwardRef } from "react";
 import { FaSpinner } from "react-icons/fa";
 
 import { cn } from "@/lib/utils";
@@ -15,7 +21,7 @@ const ButtonVariants = cva(
         tertiary:
           "text-black dark:text-white bg-transparent py-2 px-4 disabled:opacity-25",
         secondary:
-          "border border-black dark:border-white bg-white dark:bg-black text-black dark:text-white focus:bg-black dark:focus:bg-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black focus:text-white dark:focus:text-black transition-colors py-2 px-4 shadow-none",
+          "border border-black dark:border-white bg-white dark:bg-black text-black dark:text-white focus:bg-black dark:focus:bg-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black focus:text-white dark:focus:text-black transition-colors shadow-none",
         danger:
           "border border-red-500 hover:bg-red-500 hover:text-white transition-colors",
       },
@@ -34,6 +40,7 @@ export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof ButtonVariants> {
   isLoading?: boolean;
+  tooltip?: string;
 }
 
 const Button = forwardRef(
@@ -44,11 +51,12 @@ const Button = forwardRef(
       variant,
       brightness,
       isLoading,
+      tooltip,
       ...props
     }: ButtonProps,
     forwardedRef
   ): JSX.Element => {
-    return (
+    const buttonElement = (
       <button
         className={cn(ButtonVariants({ variant, brightness, className }))}
         disabled={isLoading}
@@ -58,6 +66,21 @@ const Button = forwardRef(
         {children} {isLoading && <FaSpinner className="animate-spin" />}
       </button>
     );
+
+    if (tooltip !== undefined) {
+      return (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>{buttonElement}</TooltipTrigger>
+            <TooltipContent className="bg-gray-100 rounded-md p-1">
+              {tooltip}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      );
+    }
+
+    return buttonElement;
   }
 );
 

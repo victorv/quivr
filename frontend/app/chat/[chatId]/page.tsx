@@ -1,22 +1,32 @@
 "use client";
 
+import { useKnowledgeToFeedContext } from "@/lib/context/KnowledgeToFeedProvider/hooks/useKnowledgeToFeedContext";
+import { useCustomDropzone } from "@/lib/hooks/useDropzone";
+
 import { ActionsBar } from "./components/ActionsBar";
 import { ChatDialogueArea } from "./components/ChatDialogueArea/ChatDialogue";
-import { ChatHeader } from "./components/ChatHeader";
 
 const SelectedChatPage = (): JSX.Element => {
+  const { getRootProps } = useCustomDropzone();
+  const { shouldDisplayFeedCard } = useKnowledgeToFeedContext();
+
   return (
-    <main className="flex flex-col w-full pt-10" data-testid="chat-page">
-      <section className="flex flex-col flex-1 items-center w-full h-full min-h-[70vh]">
-        <ChatHeader />
-        <div className="flex-1 flex flex-col mt-8 w-full shadow-md dark:shadow-primary/25 hover:shadow-xl transition-shadow rounded-xl overflow-hidden bg-white dark:bg-black border border-black/10 dark:border-white/25 p-12 pt-10 max-h-[80vh]">
-          <div className="flex flex-1 flex-col overflow-hidden">
-            <ChatDialogueArea />
-          </div>
-          <ActionsBar />
+    <div
+      className={`flex flex-col flex-1 items-center justify-stretch w-full h-fill-available overflow-hidden ${
+        shouldDisplayFeedCard ? "bg-chat-bg-gray" : "bg-white"
+      } dark:bg-black transition-colors ease-out duration-500`}
+      data-testid="chat-page"
+      {...getRootProps()}
+    >
+      <div
+        className={`flex flex-col flex-1 w-full max-w-5xl h-full dark:shadow-primary/25 overflow-hidden p-2 sm:p-4 md:p-6 lg:p-8`}
+      >
+        <div className="flex flex-1 flex-col overflow-y-auto">
+          <ChatDialogueArea />
         </div>
-      </section>
-    </main>
+        <ActionsBar />
+      </div>
+    </div>
   );
 };
 

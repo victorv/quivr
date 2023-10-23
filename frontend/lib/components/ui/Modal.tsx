@@ -1,3 +1,5 @@
+/*eslint max-lines: ["error", 200 ]*/
+
 "use client";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion } from "framer-motion";
@@ -11,7 +13,7 @@ type CommonModalProps = {
   title?: string;
   desc?: string;
   children?: ReactNode;
-  Trigger: ReactNode;
+  Trigger?: ReactNode;
   CloseTrigger?: ReactNode;
   isOpen?: undefined;
   setOpen?: undefined;
@@ -37,8 +39,13 @@ export const Modal = ({
   const { t } = useTranslation(["translation"]);
 
   return (
-    <Dialog.Root onOpenChange={customSetOpen ?? setOpen}>
-      <Dialog.Trigger asChild>{Trigger}</Dialog.Trigger>
+    <Dialog.Root
+      open={customIsOpen ?? isOpen}
+      onOpenChange={customSetOpen ?? setOpen}
+    >
+      {Trigger !== undefined && (
+        <Dialog.Trigger asChild>{Trigger}</Dialog.Trigger>
+      )}
       <AnimatePresence>
         {customIsOpen ?? isOpen ? (
           <Dialog.Portal forceMount>
@@ -48,7 +55,6 @@ export const Modal = ({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                // transition={{ duration: 0.4, ease: "easeInOut" }}
               >
                 <Dialog.Content asChild forceMount>
                   <motion.div

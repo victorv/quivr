@@ -1,6 +1,7 @@
-/* eslint-disable */
 "use client";
 import Link from "next/link";
+import { Suspense } from "react";
+import { useTranslation } from "react-i18next";
 
 import Button from "@/lib/components/ui/Button";
 import Card from "@/lib/components/ui/Card";
@@ -12,24 +13,25 @@ import { GoogleLoginButton } from "./components/GoogleLogin";
 import { MagicLinkLogin } from "./components/MagicLinkLogin";
 import { PasswordForgotten } from "./components/PasswordForgotten";
 import { useLogin } from "./hooks/useLogin";
-import { useTranslation } from "react-i18next";
-import { Suspense } from "react";
 
-
-function Main() {
+const Main = (): JSX.Element => {
   const { handleLogin, setEmail, setPassword, email, isPending, password } =
     useLogin();
-  const { t } = useTranslation(["translation","login"]);
+  const { t } = useTranslation(["translation", "login"]);
+
   return (
     <main>
       <section className="w-full min-h-[80vh] h-full outline-none flex flex-col gap-5 items-center justify-center p-6">
-        <PageHeading title={t("title",{ ns: 'login' })} subtitle={t("subtitle",{ ns: 'login' })} />
+        <PageHeading
+          title={t("title", { ns: "login" })}
+          subtitle={t("subtitle", { ns: "login" })}
+        />
         <Card className="max-w-md w-full p-5 sm:p-10 text-left">
           <form
             data-testid="sign-in-form"
             onSubmit={(e) => {
               e.preventDefault();
-              handleLogin();
+              void handleLogin();
             }}
             className="flex flex-col gap-2"
           >
@@ -51,12 +53,16 @@ function Main() {
             />
 
             <div className="flex flex-col items-center justify-center mt-2 gap-2">
-              <Button type="submit" isLoading={isPending}>
+              <Button
+                data-testid="submit-login"
+                type="submit"
+                isLoading={isPending}
+              >
                 {t("loginButton")}
               </Button>
               <PasswordForgotten setEmail={setEmail} email={email} />
 
-              <Link href="/signup">{t("signup",{ ns: 'login' })}</Link>
+              <Link href="/signup">{t("signup", { ns: "login" })}</Link>
             </div>
 
             <Divider text={t("or")} />
@@ -69,14 +75,15 @@ function Main() {
         </Card>
       </section>
     </main>
-  )
-}
+  );
+};
 
-export default function Login() {
+const Login = (): JSX.Element => {
   return (
     <Suspense fallback="Loading...">
       <Main />
     </Suspense>
-    
   );
-}
+};
+
+export default Login;

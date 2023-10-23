@@ -8,8 +8,10 @@ import { useAuthApi } from "@/lib/api/auth/useAuthApi";
 import { USER_IDENTITY_DATA_KEY } from "@/lib/api/user/config";
 import { useUserApi } from "@/lib/api/user/useUserApi";
 import { UserIdentity } from "@/lib/api/user/user";
+import copyToClipboard from "@/lib/helpers/copyToClipboard";
 import { useToast } from "@/lib/hooks";
-import { useEventTracking } from "@/services/analytics/useEventTracking";
+import { useGAnalyticsEventTracker } from "@/services/analytics/google/useGAnalyticsEventTracker";
+import { useEventTracking } from "@/services/analytics/june/useEventTracking";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useApiKeyConfig = () => {
@@ -30,6 +32,9 @@ export const useApiKeyConfig = () => {
     queryKey: [USER_IDENTITY_DATA_KEY],
     queryFn: getUserIdentity,
   });
+  const { eventTracker: gaEventTracker } = useGAnalyticsEventTracker({
+    category: "QUIVR_API_KEY",
+  });
 
   useEffect(() => {
     if (userData !== undefined) {
@@ -40,6 +45,7 @@ export const useApiKeyConfig = () => {
   const handleCreateClick = async () => {
     try {
       void track("CREATE_API_KEY");
+      gaEventTracker?.({ action: "CREATE_API_KEY" });
       const createdApiKey = await createApiKey();
       setApiKey(createdApiKey);
     } catch (error) {
@@ -47,17 +53,11 @@ export const useApiKeyConfig = () => {
     }
   };
 
-  const copyToClipboard = async (text: string) => {
-    try {
-      void track("COPY_API_KEY");
-      await navigator.clipboard.writeText(text);
-    } catch (err) {
-      console.error("Failed to copy:", err);
-    }
-  };
-
   const handleCopyClick = () => {
     if (apiKey !== "") {
+      void track("COPY_API_KEY");
+      gaEventTracker?.({ action: "COPY_API_KEY" });
+
       void copyToClipboard(apiKey);
     }
   };

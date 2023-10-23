@@ -1,25 +1,27 @@
+import os
 from typing import Optional
 from uuid import UUID
 
 from auth import AuthBearer, get_current_user
-from fastapi import APIRouter, Depends, Query, Request, UploadFile
-from models import Brain, File, UserIdentity, UserUsage
-from models.databases.supabase.notifications import (
-    CreateNotificationProperties,
-    NotificationUpdatableProperties,
-)
+from celery_worker import process_file_and_notify
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, UploadFile
+from logger import get_logger
+from models import Brain, UserIdentity, UserUsage
+from models.databases.supabase.knowledge import CreateKnowledgeProperties
+from models.databases.supabase.notifications import CreateNotificationProperties
 from models.notifications import NotificationsStatusEnum
 from repository.brain import get_brain_details
+from repository.files.upload_file import upload_file_storage
+from repository.knowledge.add_knowledge import add_knowledge
 from repository.notification.add_notification import add_notification
-from repository.notification.update_notification import update_notification_by_id
 from repository.user_identity import get_user_identity
 from routes.authorizations.brain_authorization import (
     RoleEnum,
     validate_brain_authorization,
 )
 from utils.file import convert_bytes, get_file_size
-from utils.processors import filter_file
 
+logger = get_logger(__name__)
 upload_router = APIRouter()
 
 
@@ -37,22 +39,9 @@ async def upload_file(
     enable_summarization: bool = False,
     current_user: UserIdentity = Depends(get_current_user),
 ):
-    """
-    Upload a file to the user's storage.
-
-    - `file`: The file to be uploaded.
-    - `enable_summarization`: Flag to enable summarization of the file's content.
-    - `current_user`: The current authenticated user.
-    - Returns the response message indicating the success or failure of the upload.
-
-    This endpoint allows users to upload files to their storage (brain). It checks the remaining free space in the user's storage (brain)
-    and ensures that the file size does not exceed the maximum capacity. If the file is within the allowed size limit,
-    it can optionally apply summarization to the file's content. The response message will indicate the status of the upload.
-    """
     validate_brain_authorization(
         brain_id, current_user.id, [RoleEnum.Editor, RoleEnum.Owner]
     )
-
     brain = Brain(id=brain_id)
     userDailyUsage = UserUsage(
         id=current_user.id,
@@ -67,53 +56,64 @@ async def upload_file(
     remaining_free_space = userSettings.get("max_brain_size", 1000000000)
 
     file_size = get_file_size(uploadFile)
-
-    file = File(file=uploadFile)
     if remaining_free_space - file_size < 0:
         message = {
             "message": f"❌ UserIdentity's brain will exceed maximum capacity with this upload. Maximum file allowed is : {convert_bytes(remaining_free_space)}",
             "type": "error",
         }
-    else:
-        upload_notification = None
-        if chat_id:
-            upload_notification = add_notification(
-                CreateNotificationProperties(
-                    action="UPLOAD",
-                    chat_id=chat_id,
-                    status=NotificationsStatusEnum.Pending,
-                )
+        return message
+    upload_notification = None
+    if chat_id:
+        upload_notification = add_notification(
+            CreateNotificationProperties(
+                action="UPLOAD",
+                chat_id=chat_id,
+                status=NotificationsStatusEnum.Pending,
             )
-        openai_api_key = request.headers.get("Openai-Api-Key", None)
-        if openai_api_key is None:
-            brain_details = get_brain_details(brain_id)
-            if brain_details:
-                openai_api_key = brain_details.openai_api_key
-
-        if openai_api_key is None:
-            openai_api_key = get_user_identity(current_user.id).openai_api_key
-
-        message = await filter_file(
-            file=file,
-            enable_summarization=enable_summarization,
-            brain_id=brain_id,
-            openai_api_key=openai_api_key,
         )
-        if not file.file:
-            raise Exception("File not found")
+    openai_api_key = request.headers.get("Openai-Api-Key", None)
+    if openai_api_key is None:
+        brain_details = get_brain_details(brain_id)
+        if brain_details:
+            openai_api_key = brain_details.openai_api_key
+    if openai_api_key is None:
+        openai_api_key = get_user_identity(current_user.id).openai_api_key
 
-        if upload_notification:
-            notification_message = {
-                "status": message["type"],
-                "message": message["message"],
-                "name": file.file.filename if file.file else "",
-            }
-            update_notification_by_id(
-                upload_notification.id,
-                NotificationUpdatableProperties(
-                    status=NotificationsStatusEnum.Done,
-                    message=str(notification_message),
-                ),
+    file_content = await uploadFile.read()
+    filename_with_brain_id = str(brain_id) + "/" + str(uploadFile.filename)
+
+    try:
+        fileInStorage = upload_file_storage(file_content, filename_with_brain_id)
+        logger.info(f"File {fileInStorage} uploaded successfully")
+
+    except Exception as e:
+        if "The resource already exists" in str(e):
+            raise HTTPException(
+                status_code=403,
+                detail=f"File {uploadFile.filename} already exists in storage.",
+            )
+        else:
+            raise HTTPException(
+                status_code=500, detail="Failed to upload file to storage."
             )
 
-    return message
+    knowledge_to_add = CreateKnowledgeProperties(
+        brain_id=brain_id,
+        file_name=uploadFile.filename,
+        extension=os.path.splitext(
+            uploadFile.filename  # pyright: ignore reportPrivateUsage=none
+        )[-1].lower(),
+    )
+
+    added_knowledge = add_knowledge(knowledge_to_add)
+    logger.info(f"Knowledge {added_knowledge} added successfully")
+
+    process_file_and_notify.delay(
+        file_name=filename_with_brain_id,
+        file_original_name=uploadFile.filename,
+        enable_summarization=enable_summarization,
+        brain_id=brain_id,
+        openai_api_key=openai_api_key,
+        notification_id=upload_notification.id if upload_notification else None,
+    )
+    return {"message": "File processing has started."}

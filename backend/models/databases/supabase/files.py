@@ -9,7 +9,7 @@ class File(Repository):
         response = (
             self.db.table("vectors")
             .select("id")
-            .filter("metadata->>file_sha1", "eq", file_sha1)
+            .filter("file_sha1", "eq", file_sha1)
             .execute()
         )
         return response.data
@@ -20,7 +20,7 @@ class File(Repository):
         response = (
             self.db.table("brains_vectors")
             .select("brain_id, vector_id")
-            .filter("brain_id", "eq", brain_id)
+            .filter("brain_id", "eq", str(brain_id))
             .filter("file_sha1", "eq", file_sha1)
             .execute()
         )

@@ -7,10 +7,9 @@ from langchain.callbacks.streaming_aiter import AsyncIteratorCallbackHandler
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatLiteLLM
 from langchain.chat_models.base import BaseChatModel
-from langchain.prompts.chat import (
-    ChatPromptTemplate,
-    HumanMessagePromptTemplate,
-)
+from langchain.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
+from llm.utils.get_prompt_to_use import get_prompt_to_use
+from llm.utils.get_prompt_to_use_id import get_prompt_to_use_id
 from logger import get_logger
 from models.chats import ChatQuestion
 from models.databases.supabase.chats import CreateChatHistory
@@ -25,11 +24,8 @@ from repository.chat import (
     update_message_by_id,
 )
 
-from llm.utils.get_prompt_to_use import get_prompt_to_use
-from llm.utils.get_prompt_to_use_id import get_prompt_to_use_id
-
 logger = get_logger(__name__)
-SYSTEM_MESSAGE = "Your name is Quivr. You're a helpful assistant. If you don't know the answer, just say that you don't know, don't try to make up an answer."
+SYSTEM_MESSAGE = "Your name is Quivr. You're a helpful assistant. If you don't know the answer, just say that you don't know, don't try to make up an answer.When answering use markdown or any other techniques to display the content in a nice and aerated way."
 
 
 class HeadlessQA(BaseModel):
@@ -92,7 +88,7 @@ class HeadlessQA(BaseModel):
         :return: Language model instance
         """
         return ChatLiteLLM(
-            temperature=temperature,
+            temperature=0.1,
             model=model,
             streaming=streaming,
             verbose=True,
@@ -165,7 +161,9 @@ class HeadlessQA(BaseModel):
             transformed_history, prompt_content, question.question
         )
         answering_llm = self._create_llm(
-            model=self.model, streaming=True, callbacks=self.callbacks
+            model=self.model,
+            streaming=True,
+            callbacks=self.callbacks,
         )
 
         CHAT_PROMPT = ChatPromptTemplate.from_messages(messages)

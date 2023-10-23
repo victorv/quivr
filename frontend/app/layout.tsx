@@ -1,5 +1,5 @@
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import { cookies, headers } from "next/headers";
 
@@ -42,13 +42,11 @@ const RootLayout = async ({
           <ToastProvider>
             <SupabaseProvider session={session}>
               <BrainProvider>
-                <App>
-                  <div className="flex-1">{children}</div>
-                </App>
+                <App>{children}</App>
               </BrainProvider>
             </SupabaseProvider>
           </ToastProvider>
-          <Analytics />
+          <VercelAnalytics />
         </FeatureFlagsProvider>
       </body>
     </html>
