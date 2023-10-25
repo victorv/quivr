@@ -62,7 +62,7 @@
     "i18next-http-backend": "^2.2.1",
     "lodash": "^4.17.21",
     "marked": "^9.0.3",
-    "next": "13.4.19",
+    "next": "13.5.0",
     "nock": "^13.3.1",
     "postcss": "8.4.23",
     "prettier": "^2.8.8",
