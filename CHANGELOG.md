@@ -1,5 +1,503 @@
 # Changelog
 
+## 0.0.140 (2023-12-14)
+
+## What's Changed
+* feat: Update pytest command in Makefile and add new test by @StanGirard in https://github.com/StanGirard/quivr/pull/1893
+* chore: add IDE extension for i18n handling by @NilsJacobsen in https://github.com/StanGirard/quivr/pull/1896
+* feat: add chat view new design by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1897
+
+## New Contributors
+* @NilsJacobsen made their first contribution in https://github.com/StanGirard/quivr/pull/1896
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.139...v0.0.140
+
+## 0.0.139 (2023-12-14)
+
+## What's Changed
+* feat: allow user to feed brain from Actions bar by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1882
+* feat: add Menu bar by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1885
+* feat: Remove unused method and update file processing by @StanGirard in https://github.com/StanGirard/quivr/pull/1890
+* fix: update chat history fetching logic by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1891
+* feat: add default feed button label by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1892
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.138...v0.0.139
+
+## 0.0.138 (2023-12-13)
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.137...v0.0.138
+
+## 0.0.137 (2023-12-13)
+
+## What's Changed
+* feat: add chat history to Actions modal by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1877
+* feat: allow user to control left panel from Chat input by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1880
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.136...v0.0.137
+
+## 0.0.136 (2023-12-13)
+
+## What's Changed
+* feat: Add @tailwindcss/forms plugin and update by @StanGirard in https://github.com/StanGirard/quivr/pull/1869
+* feat: Refactor get_question_context_for_brain endpoint by @StanGirard in https://github.com/StanGirard/quivr/pull/1872
+* feat: Add file URL to DocumentAnswer objects by @StanGirard in https://github.com/StanGirard/quivr/pull/1874
+* Update .gitignore and add .gitmodules by @StanGirard in https://github.com/StanGirard/quivr/pull/1875
+* feat: add new actions modal by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1870
+* feat: add selected brain tag and new discussion button to actions modal by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1873
+* feat: add action modal change brain button by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1876
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.135...v0.0.136
+
+## 0.0.135 (2023-12-11)
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.134...v0.0.135
+
+## 0.0.134 (2023-12-11)
+
+## What's Changed
+* feat: add custom rag first abstraction layer by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1858
+* feat(payment): added modal of right size by @StanGirard in https://github.com/StanGirard/quivr/pull/1860
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.133...v0.0.134
+
+## 0.0.133 (2023-12-11)
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.132...v0.0.133
+
+## 0.0.132 (2023-12-10)
+
+## What's Changed
+* feat: add generate_answer function to support non streamed response for api brain by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1847
+* fix(ollama): - update supabase-db postgres docker image version by @KonstantinosAng in https://github.com/StanGirard/quivr/pull/1853
+
+## New Contributors
+* @KonstantinosAng made their first contribution in https://github.com/StanGirard/quivr/pull/1853
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.131...v0.0.132
+
+## 0.0.131 (2023-12-06)
+
+## What's Changed
+* feat: update onboarding questions answer by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1834
+* feat: composite brains get by @gozineb in https://github.com/StanGirard/quivr/pull/1837
+* feat: add Agent creation frontend by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1836
+* feat: keep sidebar opened on non mobile devices by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1840
+* feat: add brains list overflow indicator by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1842
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.130...v0.0.131
+
+## 0.0.130 (2023-12-06)
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.129...v0.0.130
+
+## 0.0.129 (2023-12-06)
+
+## What's Changed
+* feat(requirements): update aws version by @StanGirard in https://github.com/StanGirard/quivr/pull/1819
+* feat: add brain creation step 2 by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1823
+* feat: composite brains db by @gozineb in https://github.com/StanGirard/quivr/pull/1826
+* feat: finalise steps based brain creation by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1825
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.128...v0.0.129
+
+## 0.0.128 (2023-12-05)
+
+## What's Changed
+* feat: track response source usage by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1810
+* doc: add VirtioFS instruction for MacOS users by @tarek-ayed in https://github.com/StanGirard/quivr/pull/1813
+* refactor: chat for multibrains by @gozineb in https://github.com/StanGirard/quivr/pull/1812
+* feat(prebuilt): prebuild backend image for faster compilation by @StanGirard in https://github.com/StanGirard/quivr/pull/1815
+* fix: text not clear in dark mode by @Jezla in https://github.com/StanGirard/quivr/pull/1804
+* fix: celery config typo by @yonmey in https://github.com/StanGirard/quivr/pull/1776
+* feat: add brain creation steps system by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1814
+
+## New Contributors
+* @tarek-ayed made their first contribution in https://github.com/StanGirard/quivr/pull/1813
+* @Jezla made their first contribution in https://github.com/StanGirard/quivr/pull/1804
+* @yonmey made their first contribution in https://github.com/StanGirard/quivr/pull/1776
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.127...v0.0.128
+
+## 0.0.127 (2023-12-04)
+
+## What's Changed
+* feat(api-keys): added customization by @StanGirard in https://github.com/StanGirard/quivr/pull/1802
+* feat(embedding): now 100 times faster ⚡️🔥 by @StanGirard in https://github.com/StanGirard/quivr/pull/1807
+* fix: update editor state update logic by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1809
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.126...v0.0.127
+
+## 0.0.126 (2023-12-03)
+
+## What's Changed
+* feat: add optimistic update on new message by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1764
+* feat: update models logic by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1767
+* refactor: to modules by @gozineb in https://github.com/StanGirard/quivr/pull/1754
+* feat(supabase): local installation made easy by @StanGirard in https://github.com/StanGirard/quivr/pull/1777
+* feat(install): it now takes 30 seconds to install Quivr by @StanGirard in https://github.com/StanGirard/quivr/pull/1780
+* feat: 🎸 install by @StanGirard in https://github.com/StanGirard/quivr/pull/1784
+* fix(url): crawling fixed by @StanGirard in https://github.com/StanGirard/quivr/pull/1785
+* docs: fix typo in name of docker compose dev file by @iMADi-ARCH in https://github.com/StanGirard/quivr/pull/1800
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.125...v0.0.126
+
+## 0.0.125 (2023-11-30)
+
+## What's Changed
+* fix(api): fixed issue with name function and ilmproved promtp by @StanGirard in https://github.com/StanGirard/quivr/pull/1759
+* fix: update mention suggestion filtering logic by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1763
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.124...v0.0.125
+
+## 0.0.124 (2023-11-29)
+
+## What's Changed
+* feat(chatInput): use tiptap editor by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1752
+* docs: update guidelines.md by @eltociear in https://github.com/StanGirard/quivr/pull/1755
+* Feat/local llm bug fix by @StanGirard in https://github.com/StanGirard/quivr/pull/1758
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.123...v0.0.124
+
+## 0.0.123 (2023-11-29)
+
+## What's Changed
+* chore: downgrade versions by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1748
+* fix: revert implement local llms by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1749
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.122...v0.0.123
+
+## 0.0.122 (2023-11-29)
+
+## What's Changed
+* refactor: Notification module by @gozineb in https://github.com/StanGirard/quivr/pull/1740
+* refactor: remove explore route from back & front by @gozineb in https://github.com/StanGirard/quivr/pull/1741
+* feat: implement local llms by @StanGirard in https://github.com/StanGirard/quivr/pull/1745
+* refactor: knowledge module by @gozineb in https://github.com/StanGirard/quivr/pull/1743
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.121...v0.0.122
+
+## 0.0.121 (2023-11-28)
+
+## What's Changed
+* fix: update max token logic by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1725
+* fix: update public brain subscription logic by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1727
+* fix: sanitize file name by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1728
+* feat(publicBrains): use join queries for better performance by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1730
+* feat: improve delete knowledge performance by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1733
+* fix: 🐛 crawler by @StanGirard in https://github.com/StanGirard/quivr/pull/1735
+* feat: 🎸 local user by @StanGirard in https://github.com/StanGirard/quivr/pull/1736
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.120...v0.0.121
+
+## 0.0.120 (2023-11-27)
+
+## What's Changed
+* fix: 🐛 sentry by @StanGirard in https://github.com/StanGirard/quivr/pull/1716
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.119...v0.0.120
+
+## 0.0.119 (2023-11-24)
+
+## What's Changed
+* refactor: Prompt module by @gozineb in https://github.com/StanGirard/quivr/pull/1688
+* Fixes string formatting when logging knowledge table by @MeTaNoV in https://github.com/StanGirard/quivr/pull/1691
+* fix: update max token overwrite logic by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1694
+* fix: remove diacritics from filenames by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1695
+* refactor: onboarding module by @gozineb in https://github.com/StanGirard/quivr/pull/1702
+* feat: display notification when file size is too big by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1704
+* feat: add api brain steps log (backend) by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1705
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.118...v0.0.119
+
+## 0.0.118 (2023-11-22)
+
+## What's Changed
+* docs: add api based brains by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1685
+* Adds pytesseract, tesseract and poopler-utils by @MeTaNoV in https://github.com/StanGirard/quivr/pull/1648
+
+## New Contributors
+* @MeTaNoV made their first contribution in https://github.com/StanGirard/quivr/pull/1648
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.117...v0.0.118
+
+## 0.0.117 (2023-11-22)
+
+## What's Changed
+* fix: 🐛 api by @StanGirard in https://github.com/StanGirard/quivr/pull/1676
+* fix: persist api brain creation data on tab change by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1680
+* feat: 🎸 tokens by @StanGirard in https://github.com/StanGirard/quivr/pull/1678
+* feat: allow updating api brain definition by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1682
+* feat: make brain description required by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1684
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.116...v0.0.117
+
+## 0.0.116 (2023-11-21)
+
+## What's Changed
+* feat: update brain modal in chat input  by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1668
+* feat(apiBrain): add api brain secrets field in knowledge tab by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1669
+* feat(apiBrain): improve ux by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1672
+* feat(feedBrain): add manage button by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1674
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.115...v0.0.116
+
+## 0.0.115 (2023-11-20)
+
+## What's Changed
+* fix(apiBrain): fix default type selection by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1642
+* fix: allow user to set a brain as public after creation by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1646
+* fix(brainManagement): fix shared brain access issue by @gozineb in https://github.com/StanGirard/quivr/pull/1641
+* feat: 🎸 docker reduced size by 2 by @StanGirard in https://github.com/StanGirard/quivr/pull/1653
+* feat: 🎸 docker by @StanGirard in https://github.com/StanGirard/quivr/pull/1656
+* feat: 🎸 marketplace by @StanGirard in https://github.com/StanGirard/quivr/pull/1657
+* feat: 🎸 openai by @StanGirard in https://github.com/StanGirard/quivr/pull/1658
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.114...v0.0.115
+
+## 0.0.114 (2023-11-16)
+
+## What's Changed
+* feat: add api brain creation frontend by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1631
+* refactor: add modules folder by @gozineb in https://github.com/StanGirard/quivr/pull/1633
+* feat: update settings tab add api brain definition by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1635
+* feat: add public api brain subscription by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1636
+* fix: delete brain on users click in brains management by @gozineb in https://github.com/StanGirard/quivr/pull/1638
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.113...v0.0.114
+
+## 0.0.113 (2023-11-14)
+
+## What's Changed
+* refactor: packages folder be 2 by @gozineb in https://github.com/StanGirard/quivr/pull/1628
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.112...v0.0.113
+
+## 0.0.112 (2023-11-14)
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.111...v0.0.112
+
+## 0.0.111 (2023-11-14)
+
+## What's Changed
+* ci: 🎡 tests by @StanGirard in https://github.com/StanGirard/quivr/pull/1615
+* fix: update delete brain logic by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1619
+* test(added): misc prompt onboarding by @StanGirard in https://github.com/StanGirard/quivr/pull/1622
+* feat: remove api brain secrets and schemas on delete by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1621
+* test(all): added by @StanGirard in https://github.com/StanGirard/quivr/pull/1624
+* refactor: create "files" package by @gozineb in https://github.com/StanGirard/quivr/pull/1626
+* feat: api definition in brain creation modal by @gozineb in https://github.com/StanGirard/quivr/pull/1613
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.110...v0.0.111
+
+## 0.0.110 (2023-11-13)
+
+## What's Changed
+* fix: add user id while creating default brain by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1616
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.109...v0.0.110
+
+## 0.0.109 (2023-11-13)
+
+## What's Changed
+* feat: add APIBrainQA  by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1606
+* feat: allow users to chat with apis by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1612
+* feat(docker): use multi-stage Docker builds for smaller images by @shidenkai0 in https://github.com/StanGirard/quivr/pull/1614
+
+## New Contributors
+* @shidenkai0 made their first contribution in https://github.com/StanGirard/quivr/pull/1614
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.108...v0.0.109
+
+## 0.0.108 (2023-11-07)
+
+## What's Changed
+* feat: add api_brain_definition table by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1601
+* feat: add brain_type column to brain table by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1603
+* feat: supabase vault by @gozineb in https://github.com/StanGirard/quivr/pull/1605
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.107...v0.0.108
+
+## 0.0.107 (2023-11-06)
+
+## What's Changed
+* fix: allow to change model bro brain settings tab by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1590
+* fix: fix notification banner display when too much items in chat list by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1593
+* docs: add auth modes config by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1595
+* fix: allow users to delete brains by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1596
+* feat: 🎸 source documents by @StanGirard in https://github.com/StanGirard/quivr/pull/1598
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.106...v0.0.107
+
+## 0.0.106 (2023-11-06)
+
+## What's Changed
+* feat: 🎸 sources by @StanGirard in https://github.com/StanGirard/quivr/pull/1591
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.105...v0.0.106
+
+## 0.0.105 (2023-11-06)
+
+## What's Changed
+* feat: make auth mode configurable by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1579
+* Fix #1290 issue running migrations by @charlesbrandt in https://github.com/StanGirard/quivr/pull/1585
+* Use 'unless-stopped' instead of 'always' for development by @charlesbrandt in https://github.com/StanGirard/quivr/pull/1586
+* feat: 🎸 vps by @StanGirard in https://github.com/StanGirard/quivr/pull/1587
+* Update vps_install.md for subdomain by @jbeltran73-2 in https://github.com/StanGirard/quivr/pull/1589
+
+## New Contributors
+* @charlesbrandt made their first contribution in https://github.com/StanGirard/quivr/pull/1585
+* @jbeltran73-2 made their first contribution in https://github.com/StanGirard/quivr/pull/1589
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.104...v0.0.105
+
+## 0.0.104 (2023-11-03)
+
+## What's Changed
+* feat: 🎸 docs by @StanGirard in https://github.com/StanGirard/quivr/pull/1561
+* style(prompts): update public prompts dropdown styling by @St-Bloom in https://github.com/StanGirard/quivr/pull/1563
+* feat: add remote notification config by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1547
+* fix: fix button bad children error by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1564
+* style: fix hidden contents by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1577
+
+## New Contributors
+* @St-Bloom made their first contribution in https://github.com/StanGirard/quivr/pull/1563
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.103...v0.0.104
+
+## 0.0.103 (2023-11-02)
+
+## What's Changed
+* feat: allow to share a public brain link by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1541
+* fix: prompt update in brains management settings tab by @gozineb in https://github.com/StanGirard/quivr/pull/1543
+* refactor: extract prompt from settings by @gozineb in https://github.com/StanGirard/quivr/pull/1546
+* feat: 🎸 telegram by @StanGirard in https://github.com/StanGirard/quivr/pull/1555
+* feat: 🎸 telegram by @StanGirard in https://github.com/StanGirard/quivr/pull/1559
+* docs: update run_fully_local.md by @eltociear in https://github.com/StanGirard/quivr/pull/1556
+* docs: grammatical errors in README.md by @HimanshuMahto in https://github.com/StanGirard/quivr/pull/1536
+* fix: missing or inaccurate zh-cn translations by @jerryshang in https://github.com/StanGirard/quivr/pull/1558
+
+## New Contributors
+* @HimanshuMahto made their first contribution in https://github.com/StanGirard/quivr/pull/1536
+* @jerryshang made their first contribution in https://github.com/StanGirard/quivr/pull/1558
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.102...v0.0.103
+
+## 0.0.102 (2023-11-01)
+
+## What's Changed
+* docs: update Quivr doc by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1531
+* docs: ✏️ search by @StanGirard in https://github.com/StanGirard/quivr/pull/1535
+* feat(brainSettings): rework knowledge tab by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1534
+* docs: ✏️ schema by @StanGirard in https://github.com/StanGirard/quivr/pull/1537
+* feat: 🎸 max-token by @StanGirard in https://github.com/StanGirard/quivr/pull/1538
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.101...v0.0.102
+
+## 0.0.101 (2023-10-31)
+
+## What's Changed
+* chore: update tanstack query dep by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1528
+* fix: update mutation pending flag by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1530
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.100...v0.0.101
+
+## 0.0.100 (2023-10-30)
+
+## What's Changed
+* refactor: fix bad smells by @gozineb in https://github.com/StanGirard/quivr/pull/1399
+* refactor:  chat_routes  by @gozineb in https://github.com/StanGirard/quivr/pull/1512
+* feat: improve ux by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1522
+* feat(docs): reworked the website by @StanGirard in https://github.com/StanGirard/quivr/pull/1523
+* Feat/docs rework by @StanGirard in https://github.com/StanGirard/quivr/pull/1525
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.99...v0.0.100
+
+## 0.0.99 (2023-10-27)
+
+## What's Changed
+* fix: minor fixes by @gozineb in https://github.com/StanGirard/quivr/pull/1499
+* feat: remove onboarding's feature flag by @matthieujacq in https://github.com/StanGirard/quivr/pull/1501
+* feat: update form content on magic link auth request by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1502
+* feat: remove legacy header and footer by @matthieujacq in https://github.com/StanGirard/quivr/pull/1509
+* fix: black horizontal line sometimes appearing below section by @matthieujacq in https://github.com/StanGirard/quivr/pull/1510
+* Improve readme.md by @ankur0904 in https://github.com/StanGirard/quivr/pull/1511
+* refactor(settings tab): extract components by @gozineb in https://github.com/StanGirard/quivr/pull/1335
+* fix: hidden video playing automatically on iphone by @matthieujacq in https://github.com/StanGirard/quivr/pull/1514
+
+## New Contributors
+* @ankur0904 made their first contribution in https://github.com/StanGirard/quivr/pull/1511
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.98...v0.0.99
+
+## 0.0.98 (2023-10-26)
+
+## What's Changed
+* feat: upgrade button in user settings by @matthieujacq in https://github.com/StanGirard/quivr/pull/1484
+* fix: failing build (removed avatar alt prop) by @matthieujacq in https://github.com/StanGirard/quivr/pull/1487
+* Fixed license link in intro.md by @Eric013 in https://github.com/StanGirard/quivr/pull/1486
+* feat: manage plan by @matthieujacq in https://github.com/StanGirard/quivr/pull/1488
+* feat: remove feature flags for homepage by @matthieujacq in https://github.com/StanGirard/quivr/pull/1493
+* feat: add new signin/login page by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1492
+
+## New Contributors
+* @Eric013 made their first contribution in https://github.com/StanGirard/quivr/pull/1486
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.97...v0.0.98
+
+## 0.0.97 (2023-10-24)
+
+## What's Changed
+* feat(cms): update content type by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1477
+* feat: upgrade to plus button by @matthieujacq in https://github.com/StanGirard/quivr/pull/1482
+* feat: 🎸 sitemap by @StanGirard in https://github.com/StanGirard/quivr/pull/1483
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.96...v0.0.97
+
+## 0.0.96 (2023-10-24)
+
+## What's Changed
+* feat: validate email and required question with react-hook-form by @matthieujacq in https://github.com/StanGirard/quivr/pull/1463
+* feat: fetch security questions from CMS by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1464
+* feat:  POST on /contact to contact quivr team by email by @matthieujacq in https://github.com/StanGirard/quivr/pull/1466
+* feat: setup premium feature backend by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1467
+* feat: add sponsor and blog links by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1472
+* feat: contact sales submission by @matthieujacq in https://github.com/StanGirard/quivr/pull/1473
+* feat(homepage): add analytics by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1474
+* fix: make use cases clickable by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1475
+* fix: update blog link position by @mamadoudicko in https://github.com/StanGirard/quivr/pull/1476
+
+
+**Full Changelog**: https://github.com/StanGirard/quivr/compare/v0.0.95...v0.0.96
+
 ## 0.0.95 (2023-10-23)
 
 ## What's Changed

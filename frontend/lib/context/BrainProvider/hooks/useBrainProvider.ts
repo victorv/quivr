@@ -3,6 +3,7 @@ import { UUID } from "crypto";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useBrainFetcher } from "@/app/brains-management/[brainId]/components/BrainManagementTabs/hooks/useBrainFetcher";
 import { CreateBrainInput } from "@/lib/api/brain/types";
 import { useBrainApi } from "@/lib/api/brain/useBrainApi";
 import { usePromptApi } from "@/lib/api/prompt/usePromptApi";
@@ -32,6 +33,9 @@ export const useBrainProvider = () => {
     (prompt) => prompt.id === currentPromptId
   );
   const currentBrain = allBrains.find((brain) => brain.id === currentBrainId);
+  const { brain: currentBrainDetails } = useBrainFetcher({
+    brainId: currentBrainId ?? undefined,
+  });
 
   const fetchAllBrains = useCallback(async () => {
     setIsFetchingBrains(true);
@@ -51,7 +55,10 @@ export const useBrainProvider = () => {
       try {
         setCurrentBrainId(createdBrain.id);
 
-        void track("BRAIN_CREATED");
+        void track("BRAIN_CREATED", {
+          brainType: brain.brain_type,
+        });
+
         void fetchAllBrains();
 
         return createdBrain.id;
@@ -100,6 +107,7 @@ export const useBrainProvider = () => {
     isFetchingBrains,
 
     currentBrain,
+    currentBrainDetails,
     currentBrainId,
     setCurrentBrainId,
 

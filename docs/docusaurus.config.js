@@ -1,8 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -71,11 +70,6 @@ const config = {
         },
         items: [
           {
-            href: '/docs/roadmap',
-            label: 'Roadmap',
-            position: 'left',
-          },
-          {
             href: 'https://quivr.app',
             position: 'right',
             label: 'Try me now',
@@ -95,7 +89,7 @@ const config = {
             items: [
               {
                 label: 'Get Started',
-                to: '/docs/get_started/intro',
+                to: '/docs/intro',
               },
             ],
           },
@@ -128,10 +122,28 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Quivr`,
       },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+      algolia: {
+        // The application ID provided by Algolia
+        appId: '4CC1BF1YRT',
+  
+        // Public API key: it is safe to commit it
+        apiKey: '20034381e8836ebc0eedf3f8b251b0eb',
+  
+        indexName: 'brain',
+  
+        // Optional: see doc section below
+        contextualSearch: true,
+  
+  
+        // Optional: Algolia search parameters
+        searchParameters: {},
+  
+        // Optional: path for search page that enabled by default (`false` to disable it)
+        searchPagePath: 'search',
+  
+        //... other Algolia params
       },
+  
     }),
 };
 

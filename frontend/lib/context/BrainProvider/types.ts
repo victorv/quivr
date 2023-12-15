@@ -1,10 +1,11 @@
 import { UUID } from "crypto";
 
+import { ApiBrainDefinition } from "@/lib/api/brain/types";
 import { BrainRoleType } from "@/lib/components/BrainUsers/types";
 import { Document } from "@/lib/types/Document";
 
 import { useBrainProvider } from "./hooks/useBrainProvider";
-import { Model } from "../../types/brainConfig";
+import { BrainType, Model } from "../../types/brainConfig";
 
 export type BrainAccessStatus = "private" | "public";
 
@@ -13,12 +14,13 @@ export type Brain = {
   name: string;
   documents?: Document[];
   status?: BrainAccessStatus;
-  model?: Model;
+  model?: Model | null;
   max_tokens?: number;
   temperature?: number;
-  openai_api_key?: string;
   description?: string;
   prompt_id?: string | null;
+  brain_type?: BrainType;
+  brain_definition?: ApiBrainDefinition;
 };
 
 export type MinimalBrainForUser = {
@@ -26,6 +28,7 @@ export type MinimalBrainForUser = {
   name: string;
   role: BrainRoleType;
   status: BrainAccessStatus;
+  brain_type: BrainType;
 };
 
 //TODO: rename rights to role in Backend and use MinimalBrainForUser instead of BackendMinimalBrainForUser
@@ -39,6 +42,8 @@ export type PublicBrain = {
   description?: string;
   number_of_subscribers: number;
   last_update: string;
+  brain_type: BrainType;
+  brain_definition?: ApiBrainDefinition;
 };
 
 export type BrainContextType = ReturnType<typeof useBrainProvider>;

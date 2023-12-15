@@ -1,10 +1,13 @@
 import { useTranslation } from "react-i18next";
-import { MdAdd } from "react-icons/md";
+import { CgFileDocument } from "react-icons/cg";
+import { MdAdd, MdLink } from "react-icons/md";
 
 import Button from "@/lib/components/ui/Button";
 import { Modal } from "@/lib/components/ui/Modal";
 import { PublicBrain } from "@/lib/context/BrainProvider/types";
+import { getBrainIconFromBrainType } from "@/lib/helpers/getBrainIconFromBrainType";
 
+import { SecretsDefinitionFields } from "./components/SecretsDefinitionFields";
 import { usePublicBrainItem } from "./hooks/usePublicBrainItem";
 import { formatDate } from "./utils/formatDate";
 
@@ -16,13 +19,15 @@ export const PublicBrainItem = ({
   brain,
 }: PublicBrainItemProps): JSX.Element => {
   const {
-    handleSubscribeToBrain,
     isUserSubscribedToBrain,
     subscriptionRequestPending,
     isSubscriptionModalOpened,
     setIsSubscriptionModalOpened,
+    handleCopyBrainLink,
+    handleBrainSubscription,
+    register,
   } = usePublicBrainItem({
-    brainId: brain.id,
+    brain,
   });
 
   const { t } = useTranslation("brain");
@@ -32,7 +37,7 @@ export const PublicBrainItem = ({
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        void handleSubscribeToBrain();
+        void handleBrainSubscription();
       }}
       disabled={isUserSubscribedToBrain || subscriptionRequestPending}
       isLoading={subscriptionRequestPending}
@@ -58,7 +63,15 @@ export const PublicBrainItem = ({
       Trigger={
         <div className="flex p-5 justify-center items-center flex-col flex-1 w-full h-full shadow-md dark:shadow-primary/25 hover:shadow-xl transition-shadow rounded-xl overflow-hidden bg-white dark:bg-black border border-black/10 dark:border-white/25 md:p-5 cursor-pointer">
           <div>
-            <p className="font-bold mb-5 text-xl line-clamp-1">{brain.name}</p>
+            <p className="font-bold mb-5 text-xl line-clamp-1 flex items-center">
+              <span className="mr-2">
+                {getBrainIconFromBrainType(brain.brain_type, {
+                  iconSize: 24,
+                  DocBrainIcon: CgFileDocument,
+                })}
+              </span>
+              {brain.name}
+            </p>
           </div>
           <div className="flex-1">
             <p
@@ -74,18 +87,37 @@ export const PublicBrainItem = ({
       }
     >
       <div>
-        <p className="text-2xl font-bold text-center mb-10">{brain.name}</p>
+        <p className="text-2xl font-bold text-center mb-10 flex items-center justify-center">
+          <span className="mr-2">
+            {getBrainIconFromBrainType(brain.brain_type, {
+              iconSize: 30,
+              DocBrainIcon: CgFileDocument,
+            })}
+          </span>
+          {brain.name}
+        </p>
         <p className={`mb-10 ${isBrainDescriptionEmpty && "text-gray-400"}`}>
           {brainDescription}
         </p>
-
         <p className="font-bold mb-5">
           <span>
             <span className="mr-2">{t("public_brain_last_update_label")}:</span>
             {formatDate(brain.last_update)}
           </span>
         </p>
-        <div className="flex flex-1 justify-end">{subscribeButton}</div>
+        <SecretsDefinitionFields
+          register={register}
+          secrets={brain.brain_definition?.secrets}
+        />
+        <div className="flex flex-1 justify-between items-center">
+          <Button
+            onClick={() => void handleCopyBrainLink()}
+            className="p-1 bg-white border-solid border border-gray-300 rounded-md hover:bg-gray-100"
+          >
+            <MdLink size="20" color="gray" />
+          </Button>
+          {subscribeButton}
+        </div>
       </div>
     </Modal>
   );

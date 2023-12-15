@@ -1,9 +1,8 @@
 import * as Popover from "@radix-ui/react-popover";
 import { LuMenu, LuX } from "react-icons/lu";
 
+import { QuivrLogo } from "@/lib/assets/QuivrLogo";
 import { cn } from "@/lib/utils";
-
-import { QuivrLogo } from "./QuivrLogo";
 
 type PopoverMenuMobileProps = {
   navLinks: JSX.Element[];
@@ -19,17 +18,15 @@ export const PopoverMenuMobile = ({
       <Popover.Root>
         <div>
           <Popover.Anchor />
-          <Popover.Trigger>
-            <button
-              title="menu"
-              type="button"
-              className={cn(
-                "bg-[#D9D9D9] bg-opacity-30 rounded-full px-4 py-1",
-                color === "white" ? "text-white" : "text-black"
-              )}
-            >
-              <LuMenu size={32} />
-            </button>
+          <Popover.Trigger
+            title="menu"
+            type="button"
+            className={cn(
+              "bg-[#D9D9D9] bg-opacity-30 rounded-full px-4 py-1",
+              color === "white" ? "text-white" : "text-black"
+            )}
+          >
+            <LuMenu size={32} />
           </Popover.Trigger>
         </div>
         <Popover.Content

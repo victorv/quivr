@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
-import { AddBrainModal } from "@/lib/components/AddBrainModal/AddBrainModal";
+import { AddBrainModal } from "@/lib/components/AddBrainModal";
 import { Sidebar } from "@/lib/components/Sidebar/Sidebar";
 import Button from "@/lib/components/ui/Button";
 
@@ -17,7 +17,7 @@ export const BrainsList = (): JSX.Element => {
   const { t } = useTranslation(["brain", "chat"]);
 
   return (
-    <Sidebar showButtons={["user"]}>
+    <Sidebar showButtons={["upgradeToPlus", "user"]}>
       <div className="flex flex-col p-2 gap-2">
         <Link href="/chat">
           <Button type="button" className="bg-primary text-white py-2 w-full">

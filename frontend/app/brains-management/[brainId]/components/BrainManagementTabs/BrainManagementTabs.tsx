@@ -4,9 +4,14 @@ import { useTranslation } from "react-i18next";
 
 import Button from "@/lib/components/ui/Button";
 
-import { BrainTabTrigger, KnowledgeTab, PeopleTab } from "./components";
+import {
+  BrainTabTrigger,
+  KnowledgeOrSecretsTab,
+  PeopleTab,
+  SettingsTab,
+} from "./components";
 import { DeleteOrUnsubscribeConfirmationModal } from "./components/Modals/DeleteOrUnsubscribeConfirmationModal";
-import { SettingsTab } from "./components/SettingsTab/SettingsTab";
+import { useBrainFetcher } from "./hooks/useBrainFetcher";
 import { useBrainManagementTabs } from "./hooks/useBrainManagementTabs";
 
 export const BrainManagementTabs = (): JSX.Element => {
@@ -14,6 +19,7 @@ export const BrainManagementTabs = (): JSX.Element => {
     "translation",
     "config",
     "delete_or_unsubscribe_from_brain",
+    "external_api_definition",
   ]);
   const {
     selectedTab,
@@ -23,9 +29,18 @@ export const BrainManagementTabs = (): JSX.Element => {
     isDeleteOrUnsubscribeModalOpened,
     setIsDeleteOrUnsubscribeModalOpened,
     hasEditRights,
+    isPublicBrain,
     isOwnedByCurrentUser,
     isDeleteOrUnsubscribeRequestPending,
   } = useBrainManagementTabs();
+  const { brain } = useBrainFetcher({
+    brainId,
+  });
+
+  const knowledgeOrSecretsTabLabel =
+    brain?.brain_type === "doc"
+      ? t("knowledge", { ns: "config" })
+      : t("secrets", { ns: "external_api_definition" });
 
   if (brainId === undefined) {
     return <div />;
@@ -34,7 +49,7 @@ export const BrainManagementTabs = (): JSX.Element => {
   return (
     <div className="flex justify-center w-full">
       <Root
-        className="flex flex-col w-full h-full overflow-hidden bg-white dark:bg-black p-4 md:p-10 max-w-5xl"
+        className="flex flex-col w-full h-full overflow-scroll bg-white dark:bg-black p-4 md:p-10 max-w-5xl"
         value={selectedTab}
       >
         <List
@@ -47,7 +62,7 @@ export const BrainManagementTabs = (): JSX.Element => {
             value="settings"
             onChange={setSelectedTab}
           />
-          {hasEditRights && (
+          {(!isPublicBrain || hasEditRights) && (
             <>
               <BrainTabTrigger
                 selected={selectedTab === "people"}
@@ -56,9 +71,9 @@ export const BrainManagementTabs = (): JSX.Element => {
                 onChange={setSelectedTab}
               />
               <BrainTabTrigger
-                selected={selectedTab === "knowledge"}
-                label={t("knowledge", { ns: "config" })}
-                value="knowledge"
+                selected={selectedTab === "knowledgeOrSecrets"}
+                label={knowledgeOrSecretsTabLabel}
+                value="knowledgeOrSecrets"
                 onChange={setSelectedTab}
               />
             </>
@@ -70,10 +85,13 @@ export const BrainManagementTabs = (): JSX.Element => {
             <SettingsTab brainId={brainId} />
           </Content>
           <Content value="people">
-            <PeopleTab brainId={brainId} />
+            <PeopleTab brainId={brainId} hasEditRights={hasEditRights} />
           </Content>
-          <Content value="knowledge">
-            <KnowledgeTab brainId={brainId} />
+          <Content value="knowledgeOrSecrets">
+            <KnowledgeOrSecretsTab
+              brainId={brainId}
+              hasEditRights={hasEditRights}
+            />
           </Content>
         </div>
 

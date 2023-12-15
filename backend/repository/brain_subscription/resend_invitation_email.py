@@ -1,11 +1,12 @@
 from logger import get_logger
-from models import BrainSubscription, BrainSettings
-
-from repository.brain import get_brain_details
+from models import BrainSettings, BrainSubscription
+from modules.brain.service.brain_service import BrainService
+from packages.emails.send_email import send_email
 from repository.brain_subscription import get_brain_url
-from utils.send_email import send_email
 
 logger = get_logger(__name__)
+
+brain_service = BrainService()
 
 
 def resend_invitation_email(
@@ -17,7 +18,7 @@ def resend_invitation_email(
 
     brain_url = get_brain_url(origin, brain_subscription.brain_id)
 
-    invitation_brain = get_brain_details(brain_subscription.brain_id)
+    invitation_brain = brain_service.get_brain_details(brain_subscription.brain_id)
     if invitation_brain is None:
         raise Exception("Brain not found")
     brain_name = invitation_brain.name
